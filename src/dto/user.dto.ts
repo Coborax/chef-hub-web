@@ -7,5 +7,6 @@ export interface UserDto {
   password: string;
   photoUrl: string;
   posts: PostDto[];
+  following: UserDto[];
   access_token: string;
 }
