@@ -7,4 +7,8 @@ export class PostsService {
     const res = await http.get<PostDto[]>("/posts");
     return res.data;
   }
+  async getFeed(): Promise<PostDto[]> {
+    const res = await http.get<PostDto[]>("/posts/feed");
+    return res.data;
+  }
 }
