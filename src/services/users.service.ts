@@ -11,4 +11,13 @@ export class UsersService {
     const res = await http.get<UserDto>("/users");
     return res.data;
   }
+
+  async getUser(username: string): Promise<UserDto> {
+    const res = await http.get<UserDto>("/users/" + username);
+    return res.data;
+  }
+
+  async followUser(username: string) {
+    await http.post("users/follow/" + username);
+  }
 }
