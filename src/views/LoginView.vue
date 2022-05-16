@@ -47,9 +47,11 @@ const passwordInput = ref("");
 
 function logIn() {
   if (usernameInput.value.length > 0 && passwordInput.value.length > 0) {
-    if (store.login(usernameInput.value, passwordInput.value)) {
-      router.push({ path: "/profile" });
-    }
+    store.login(usernameInput.value, passwordInput.value).then((loggedIn) => {
+      if (loggedIn) {
+        router.push({ path: "/profile" });
+      }
+    });
   }
   return;
 }

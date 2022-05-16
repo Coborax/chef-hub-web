@@ -13,17 +13,14 @@ export const userStore = defineStore({
   }),
   getters: {},
   actions: {
-    login(username: string, password: string) {
+    async login(username: string, password: string): Promise<boolean> {
       this.loading = true;
-      usersService.login(username, password).then(
-        (token) => {
-          localStorage.setItem("user-token", token);
-          return true;
-        },
-        () => {
-          return false;
-        }
-      );
+      const token = await usersService.login(username, password);
+      if (token) {
+        localStorage.setItem("user-token", token);
+        return true;
+      }
+      return false;
     },
     loadUserInfo() {
       this.loading = true;

@@ -20,4 +20,9 @@ export class PostsService {
     const res = await http.post("/posts/upload", data);
     return res.data;
   }
+
+  async getPost(postId: number) {
+    const res = await http.get<PostDto[]>("/posts/" + postId);
+    return res.data;
+  }
 }

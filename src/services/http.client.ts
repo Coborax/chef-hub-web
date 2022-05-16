@@ -1,4 +1,5 @@
 import axios from "axios";
+import router from "@/router";
 
 const http = axios.create({
   baseURL: "http://localhost:3000",
@@ -16,6 +17,10 @@ http.interceptors.request.use(
     return config;
   },
   (error) => {
+    if (error.response.status === 401) {
+      console.log("User was not authorized to backend taking them to login...");
+      router.push({ path: "/login" });
+    }
     Promise.reject(error);
   }
 );
