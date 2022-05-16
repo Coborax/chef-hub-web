@@ -21,9 +21,9 @@
 <script setup lang="ts">
 import { PostsService } from "@/services/posts.service";
 import { ref } from "vue";
+import router from "@/router";
 
 let selectedFile: Blob;
-// eslint-disable-next-line no-undef
 const title = ref("");
 const desc = ref("");
 
@@ -31,11 +31,14 @@ const postService = new PostsService();
 
 function upload() {
   console.log(selectedFile);
-  postService.upload(title.value, desc.value, selectedFile);
+  postService
+    .upload(title.value, desc.value, selectedFile)
+    .then(() => router.push({ path: "/profile" }));
 }
 
 function handleFileChange(e) {
   const file = e.target.files[0];
+  console.log(file.name);
   if (file != null) {
     selectedFile = new Blob([file], { type: file.type });
   }
