@@ -11,4 +11,13 @@ export class PostsService {
     const res = await http.get<PostDto[]>("/posts/feed");
     return res.data;
   }
+  async upload(title: string, desc: string, file: Blob): Promise<PostDto> {
+    const data = new FormData();
+    data.append("file", file);
+    data.append("title", title);
+    data.append("desc", desc);
+
+    const res = await http.post("/posts/upload", data);
+    return res.data;
+  }
 }
