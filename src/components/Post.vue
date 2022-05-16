@@ -9,7 +9,7 @@
     <div class="card-body">
       <h5 class="card-title">{{ post.title }}</h5>
       <h6 class="card-subtitle mb-2 text-muted">Posted: 12/12/2012</h6>
-      <p class="card-text">{{ post.desc }}</p>
+      <p class="card-text">{{ shorten(post.desc) }}</p>
       <router-link
         :to="'/post/' + post.id"
         type="button"
@@ -24,6 +24,11 @@
 
 <script setup lang="ts">
 import type { PostDto } from "@/dto/post.dto";
+import { computed } from "vue";
+
+function shorten(val: string) {
+  return val.slice(0, 100) + "...";
+}
 
 defineProps<{
   post: PostDto;
