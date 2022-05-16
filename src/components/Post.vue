@@ -10,9 +10,13 @@
       <h5 class="card-title">{{ post.title }}</h5>
       <h6 class="card-subtitle mb-2 text-muted">Posted: 12/12/2012</h6>
       <p class="card-text">{{ post.desc }}</p>
-      <button type="button" class="btn btn-outline-primary btn-sm me-2">
+      <router-link
+        :to="'/post/' + post.id"
+        type="button"
+        class="btn btn-outline-primary btn-sm me-2"
+      >
         Read More
-      </button>
+      </router-link>
       <button type="button" class="btn btn-outline-primary btn-sm">Like</button>
     </div>
   </div>

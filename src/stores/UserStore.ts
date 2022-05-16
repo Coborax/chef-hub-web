@@ -11,7 +11,6 @@ export const userStore = defineStore({
     loading: false,
     loggedInUser: {} as UserDto,
   }),
-  getters: {},
   actions: {
     async login(username: string, password: string): Promise<boolean> {
       this.loading = true;
@@ -28,6 +27,13 @@ export const userStore = defineStore({
         this.loggedInUser = user;
         this.loading = false;
       });
+    },
+    async loadUserInfoAsync(): Promise<UserDto> {
+      this.loading = true;
+      this.loggedInUser = await usersService.getUserInfo();
+      this.loading = false;
+
+      return this.loggedInUser;
     },
   },
 });

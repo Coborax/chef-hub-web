@@ -16,6 +16,7 @@
       <ProfileInfo
         v-for="user in store.loggedInUser.following"
         :user="user"
+        has-hyperlink
       ></ProfileInfo>
     </div>
   </div>
