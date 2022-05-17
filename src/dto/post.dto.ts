@@ -1,4 +1,5 @@
 import { UserDto } from "@/dto/user.dto";
+import type { CommentDto } from "@/dto/comment.dto";
 
 export interface PostDto {
   id: number;
@@ -6,4 +7,5 @@ export interface PostDto {
   desc: string;
   photoUrl: string;
   user: UserDto;
+  comments: CommentDto[];
 }
