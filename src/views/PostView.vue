@@ -11,15 +11,19 @@
       />
       <p>{{ post.desc }}</p>
     </div>
-    <div class="col-3">
+    <div class="col-4">
       <h3>Author</h3>
       <ProfileInfo :user="post.user" has-hyperlink></ProfileInfo>
+      <div class="mt-3">
+        <Comments :post="post"></Comments>
+      </div>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
 import ProfileInfo from "@/components/ProfileInfo.vue";
+import Comments from "@/components/Comments.vue";
 import { PostsService } from "@/services/posts.service";
 import { useRoute } from "vue-router";
 import type { PostDto } from "@/dto/post.dto";
