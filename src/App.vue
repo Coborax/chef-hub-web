@@ -1,7 +1,3 @@
-<script setup lang="ts">
-import { RouterLink, RouterView } from "vue-router";
-</script>
-
 <template>
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container-fluid">
@@ -32,8 +28,11 @@ import { RouterLink, RouterView } from "vue-router";
             type="search"
             placeholder="Search"
             aria-label="Search"
+            v-model="searchTerm"
           />
-          <button class="btn btn-outline-success" type="submit">Search</button>
+          <button class="btn btn-outline-success" @click="search">
+            Search
+          </button>
         </form>
         <RouterLink to="/upload" class="btn btn-outline-primary ms-3"
           >Upload</RouterLink
@@ -46,3 +45,16 @@ import { RouterLink, RouterView } from "vue-router";
     <RouterView />
   </div>
 </template>
+
+<script setup lang="ts">
+import { ref } from "vue";
+import router from "@/router";
+
+const searchTerm = ref<string>("t");
+
+function search() {
+  router.push({
+    path: "/search/" + searchTerm.value,
+  });
+}
+</script>

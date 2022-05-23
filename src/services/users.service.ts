@@ -20,4 +20,9 @@ export class UsersService {
   async followUser(username: string) {
     await http.post("users/follow/" + username);
   }
+
+  async search(searchTerm: string): Promise<UserDto[]> {
+    const res = await http.get<UserDto[]>("/users/search/" + searchTerm);
+    return res.data;
+  }
 }

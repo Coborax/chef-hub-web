@@ -59,6 +59,7 @@ function sendComment() {
     userId: store.loggedInUser.id,
     postId: props.post.id,
   });
+  msgInput.value = "";
 }
 </script>
 
