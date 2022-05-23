@@ -22,7 +22,7 @@ export class PostsService {
   }
 
   async getPost(postId: number) {
-    const res = await http.get<PostDto[]>("/posts/" + postId);
+    const res = await http.get<PostDto[]>("/posts/get/" + postId);
     return res.data;
   }
 }
