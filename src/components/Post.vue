@@ -17,22 +17,62 @@
       >
         Read More
       </router-link>
-      <button type="button" class="btn btn-outline-primary btn-sm">Like</button>
+      <button
+        v-if="!isPostLiked()"
+        type="button"
+        class="btn btn-outline-primary btn-sm"
+        @click="like"
+      >
+        Like
+      </button>
+      <button
+        v-if="isPostLiked()"
+        type="button"
+        class="btn btn-outline-danger btn-sm"
+        @click="unlike"
+      >
+        Unlike
+      </button>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
 import type { PostDto } from "@/dto/post.dto";
-import { computed } from "vue";
+import { computed, ref, watch } from "vue";
+import { PostsService } from "@/services/posts.service";
+import { userStore } from "@/stores/UserStore";
+import type { UserDto } from "@/dto/user.dto";
+
+const props = defineProps<{
+  post: PostDto;
+}>();
+
+const postService = new PostsService();
+const store = userStore();
+
+isPostLiked();
 
 function shorten(val: string) {
   return val.slice(0, 100) + "...";
 }
 
-defineProps<{
-  post: PostDto;
-}>();
+function like() {
+  store.likePost(props.post);
+}
+
+function unlike() {
+  store.unlikePost(props.post);
+}
+
+function isPostLiked() {
+  for (const likedPost of store.loggedInUser.likedPosts) {
+    if (likedPost.id === props.post.id) {
+      return true;
+    }
+  }
+  return false;
+}
 </script>
 
 <style scoped></style>

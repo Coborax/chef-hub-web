@@ -25,4 +25,14 @@ export class PostsService {
     const res = await http.get<PostDto[]>("/posts/get/" + postId);
     return res.data;
   }
+
+  async like(postId: number) {
+    const res = await http.get<PostDto[]>("/posts/like/" + postId);
+    return res.data;
+  }
+
+  async unlike(postId: number) {
+    const res = await http.get<PostDto[]>("/posts/unlike/" + postId);
+    return res.data;
+  }
 }

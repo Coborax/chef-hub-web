@@ -2,8 +2,10 @@ import { defineStore } from "pinia";
 import type { UserDto } from "@/dto/user.dto";
 import { UsersService } from "@/services/users.service";
 import type { PostDto } from "@/dto/post.dto";
+import { PostsService } from "@/services/posts.service";
 
 const usersService = new UsersService();
+const postService = new PostsService();
 
 export const userStore = defineStore({
   id: "UserStore",
@@ -34,6 +36,20 @@ export const userStore = defineStore({
       this.loading = false;
 
       return this.loggedInUser;
+    },
+    likePost(post: PostDto) {
+      postService.like(post.id).then(() => {
+        this.loggedInUser.likedPosts.push(post);
+      });
+    },
+    unlikePost(post: PostDto) {
+      postService.unlike(post.id).then(() => {
+        const index = this.loggedInUser.likedPosts.indexOf(post);
+        this.loggedInUser.likedPosts = this.loggedInUser.likedPosts.splice(
+          index - 1,
+          1
+        );
+      });
     },
   },
 });
