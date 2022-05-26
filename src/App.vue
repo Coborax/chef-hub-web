@@ -50,7 +50,7 @@
 import { ref } from "vue";
 import router from "@/router";
 
-const searchTerm = ref<string>("t");
+const searchTerm = ref<string>();
 
 function search() {
   router.push({
