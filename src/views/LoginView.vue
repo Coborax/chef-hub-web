@@ -1,5 +1,5 @@
 <template>
-  <div class="container justify-content-center" style="width: 35em">
+  <div class="container justify-content-center center" style="width: 35em">
     <b-card bg-variant="light">
       <h2 style="text-align: center; margin-bottom: 1.5em">LOG IN</h2>
       <div
@@ -22,7 +22,7 @@
         </b-form-input>
         <span
           >If you have no account, you can register
-          <router-link to="/createUser">here</router-link></span
+          <router-link to="/register">here</router-link></span
         >
       </div>
       <b-button

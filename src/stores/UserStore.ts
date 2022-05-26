@@ -23,6 +23,19 @@ export const userStore = defineStore({
       }
       return false;
     },
+    async register(
+      name: string,
+      username: string,
+      password: string
+    ): Promise<boolean> {
+      const user = await usersService.register(name, username, password);
+
+      return !!user;
+    },
+    logout() {
+      localStorage.removeItem("user-token");
+      this.loggedInUser = {} as UserDto;
+    },
     loadUserInfo() {
       this.loading = true;
       usersService.getUserInfo().then((user) => {
@@ -50,6 +63,9 @@ export const userStore = defineStore({
           1
         );
       });
+    },
+    isLoggedIn(): boolean {
+      return localStorage.getItem("user-token") != null;
     },
   },
 });

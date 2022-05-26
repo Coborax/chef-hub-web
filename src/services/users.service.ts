@@ -1,5 +1,6 @@
 import http from "@/services/http.client";
 import type { UserDto } from "@/dto/user.dto";
+import type { CreateUserDto } from "@/dto/createUser.dto";
 
 export class UsersService {
   async login(username: string, password: string): Promise<string> {
@@ -23,6 +24,20 @@ export class UsersService {
 
   async search(searchTerm: string): Promise<UserDto[]> {
     const res = await http.get<UserDto[]>("/users/search/" + searchTerm);
+    return res.data;
+  }
+
+  async register(
+    name: string,
+    username: string,
+    password: string
+  ): Promise<UserDto> {
+    const body: CreateUserDto = {
+      username: username,
+      name: name,
+      password: password,
+    };
+    const res = await http.post<UserDto>("/users", body);
     return res.data;
   }
 }

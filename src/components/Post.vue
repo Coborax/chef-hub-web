@@ -1,9 +1,9 @@
 <template>
-  <div class="card">
+  <div class="card" style="max-height: 100%; min-height: 100%">
     <img
       :src="post.photoUrl"
       class="card-img-top"
-      style="max-width: 100%"
+      style="height: 300px; max-width: 100%"
       alt="..."
     />
     <div class="card-body">
