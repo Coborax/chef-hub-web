@@ -17,9 +17,13 @@ import Post from "@/components/Post.vue";
 import { PostsService } from "@/services/posts.service";
 import { ref } from "vue";
 import type { PostDto } from "@/dto/post.dto";
+import { userStore } from "@/stores/UserStore";
 
 const postsService = new PostsService();
 const posts = ref<PostDto[]>([]);
+
+const store = userStore();
+store.loadUserInfo();
 
 postsService.getFeed().then((res) => (posts.value = res));
 </script>

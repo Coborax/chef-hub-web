@@ -66,9 +66,11 @@ function unlike() {
 }
 
 function isPostLiked() {
-  for (const likedPost of store.loggedInUser.likedPosts) {
-    if (likedPost.id === props.post.id) {
-      return true;
+  if (store.loggedInUser.likedPosts) {
+    for (const likedPost of store.loggedInUser.likedPosts) {
+      if (likedPost.id === props.post.id) {
+        return true;
+      }
     }
   }
   return false;
