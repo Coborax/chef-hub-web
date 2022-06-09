@@ -3,7 +3,7 @@ import { io } from "socket.io-client";
 import type { CreateCommentDto } from "@/dto/create-comment.dto";
 
 export class CommentService {
-  socket = io("localhost:3000");
+  socket = io("https://chef-hub-vh6th.ondigitalocean.app/backend");
 
   constructor() {
     this.socket.connect();

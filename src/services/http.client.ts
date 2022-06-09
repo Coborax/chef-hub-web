@@ -2,7 +2,7 @@ import axios from "axios";
 import router from "@/router";
 
 const http = axios.create({
-  baseURL: "http://localhost:3000",
+  baseURL: "https://chef-hub-vh6th.ondigitalocean.app/backend",
   headers: {
     "Content-type": "application/json",
   },
